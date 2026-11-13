@@ -6,6 +6,14 @@ Documentación técnica, histórica y operativa del correo con dominio propio **
 
 > **Aviso:** este repositorio es **público**. Contiene información de arquitectura y registros DNS públicos, pero deliberadamente no contraseñas, tokens Cloudflare, secretos Docker, claves privadas, cookies ni copias de buzones. Los resultados son pruebas históricas, no monitoreo permanente del VPS. Algunas acciones realizadas por Claude Code aparecen identificadas como «informadas por Claude» porque no se inspeccionó nuevamente el VPS.
 
+## Este repositorio tiene dos propósitos
+
+**A. Historial del proyecto (lo que realmente hicimos).** Está documentado en [01 — Cronología](docs/01-cronologia.md), [02 — Arquitectura](docs/02-arquitectura.md), [03 — Cloudflare](docs/03-cloudflare-dns-tls.md), [04 — Stalwart](docs/04-stalwart-vps.md), [05 — Pruebas](docs/05-pruebas-correo.md), [06 — Bulwark](docs/06-bulwark-jmap.md), [07 — Incidentes](docs/07-seguridad-incidentes.md), [08 — Operación](docs/08-operacion-mantenimiento.md) y [09 — Pendientes](docs/09-estado-pendientes.md). Registra orden cronológico, errores, decisiones y resultados **verificados o reportados**.
+
+**B. Manual de reconstrucción para compañeros.** Comienza por [10 — Recrear desde cero](docs/10-recrear-desde-cero.md), utiliza las [plantillas Docker de laboratorio](ejemplos/README.md) y verifica el resultado con el [11 — Checklist de recreación](docs/11-checklist-recreacion.md). Cada compañero debe usar su propio dominio, VPS, contraseñas y selectores DKIM, **nunca copiar secretos o datos del servidor de Gandy**.
+
+**Límite de reproducción exacta:** el gateway JMAP y los scripts de despliegue creados por Claude en el VPS original todavía no están exportados a este repositorio. Las plantillas son ejemplos de laboratorio, no copias exactas del despliegue de producción. Para reproducirlo fielmente falta añadir versiones saneadas de esos archivos y validar la guía en un VPS limpio.
+
 ## Estado resumido
 
 | Componente | Resultado al 13/11 |
