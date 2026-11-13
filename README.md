@@ -74,6 +74,10 @@ flowchart TB
 
 No alterar el servicio de gimnasio (puertos 80/443), no abrir el panel Stalwart directamente, no ejecutar limpieza global de volúmenes Docker y no subir datos/credenciales. Antes de actualizar Stalwart/Bulwark, crear copias verificables y probar rollback. Los scripts del despliegue preparados por Claude permanecen **en el VPS** y esta documentación **no es una exportación de su contenido ni de configuraciones sensibles**.
 
+## Diagnóstico actualizado de Gmail Spam (13/11)
+
+[12 — Entregabilidad Gmail](docs/12-entregabilidad-gmail.md) registra la comprobación Spamhaus sin problemas, la lectura MIME del mensaje webmail (parte de texto plano vacía, HTML con imagen) y los pasos de prueba pendientes. Este diagnóstico **no** afirma una causa única ni confunde la autenticación PASS del mensaje terminal con el mensaje creado desde Bulwark.
+
 ## Trabajo pendiente prioritario
 
 **1.** Cambiar contraseña SSH/sudo reportada como expuesta y retirar sus copias públicas. **2.** Revisar «Mostrar original» en Gmail y resultados SPF/DKIM/DMARC para diagnosticar Spam. **3.** Auditar gateway JMAP, proxies y backups automáticos. Detalle en [09 — Pendientes](docs/09-estado-pendientes.md).
