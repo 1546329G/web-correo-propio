@@ -99,3 +99,16 @@ Nueva evidencia de un segundo mensaje generado desde Gandy Mail y recibido por G
 6. No modificar MX, PTR, SPF, DKIM RSA ni DMARC que ya funcionan. Tampoco asumir que quitar Ed25519 resolverá Spam.
 
 **Fuentes:** [Google directrices](https://support.google.com/mail/answer/81126?hl=es-419); [Google correos válidos en spam](https://support.google.com/mail/answer/16457426?co=GENIE.Platform%3DDesktop&hl=es-419); [Google Postmaster Tools](https://support.google.com/mail/answer/9981691?hl=en).
+
+
+## Hito confirmado — envío a Outlook, 13/11/2026 ~13:52 (America/Lima)
+
+Captura del usuario en **Outlook Web (Microsoft)**, carpeta **Correo no deseado**, muestra mensaje recibido de `contacto@gandywilliam.dev`, asunto «hola», a las 13:52. Outlook indicó «Este mensaje se identificó como correo no deseado».
+
+**Resultado:** entrega externa a **dos proveedores distintos** comprobada en la conversación: Gmail y Outlook. Además, existen pruebas de recepción Gmail → Stalwart. El envío y la recepción **funcionan técnicamente**; la llegada consistente a bandeja Recibidos **no está resuelta**.
+
+### Estado formal del proyecto
+- **Cumplido:** SMTP saliente Stalwart/Bulwark con entrega real a Gmail y Outlook; SMTP entrante desde Gmail; acceso IMAP y aplicación web; SPF, DKIM RSA y DMARC PASS comprobados en correos a Gmail.
+- **Mejora futura, no bloqueo de funcionamiento:** reputación/clasificación como Spam o Correo no deseado en los destinatarios; no afirmar entrega garantizada a Inbox.
+- **Sin modificaciones:** no se hicieron nuevos cambios de configuración DNS o servidor durante esta confirmación.
+
