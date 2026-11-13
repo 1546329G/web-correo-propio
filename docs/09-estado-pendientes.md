@@ -38,3 +38,10 @@
 ## Consideraciones
 
 No confundir correo aceptado por Stalwart con entrega al destinatario, ni HTTP 200 con todas las funciones JMAP validadas. Los registros TXT por sí mismos no prueban resultados SPF/DKIM/DMARC de un mensaje. Este repositorio público no debe usarse para volúmenes, archivos privados, backups ni secretos.
+
+
+## Cierre del hito: envío y recepción externos — 13/11/2026
+
+**Estado: CUMPLIDO (funcionalidad de envío y recepción).** Además de Gmail, una captura de Outlook Web demuestra que Microsoft recibió el mensaje «hola» desde `contacto@gandywilliam.dev`, a las 13:52 hora Perú. Apareció en **Correo no deseado**, igual que varias pruebas en Gmail aparecieron en Spam. Esto valida **entrega técnica a Gmail y Outlook**, no buena clasificación de bandeja principal.
+
+La investigación antispam queda como **mejora pendiente**, separada del hito de funcionalidad. Ver [diagnóstico](12-entregabilidad-gmail.md).
