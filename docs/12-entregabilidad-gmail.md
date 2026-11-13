@@ -72,3 +72,30 @@ El usuario registró `gandywilliam.dev` en Google Postmaster Tools, verificó la
 La verificación fue exitosa. «Not enough data» significa que Google no dispone de suficientes datos para mostrar resultados en ciertos paneles; **no es evidencia de fallo SPF/DKIM/DMARC, ni prueba que la IP tenga buena o mala reputación**. Google reconoce que las métricas pueden no mostrarse con volúmenes diarios bajos para proteger privacidad. No enviar correos masivos para intentar forzar estadísticas.
 
 Siguientes acciones: confirmar en qué carpeta llegó el último correo «saludar», conservar el registro de verificación de Postmaster, consultar paneles periódicamente cuando haya actividad legítima, marcar «No es spam» solo para mensajes legítimos de prueba; no alterar los DNS de autenticación que ya pasan. [Fuente: Google Postmaster Tools](https://support.google.com/mail/answer/9981691?hl=es-419_es).
+
+
+## Actualización — «prueba 2», 13/11/2026, 13:41 (Lima)
+
+Nueva evidencia de un segundo mensaje generado desde Gandy Mail y recibido por Gmail, **también en Spam**.
+
+- **Remitente:** `contacto@gandywilliam.dev`; **IP:** `13.140.207.155`; **receptor:** Gmail personal.
+- **Asunto:** «prueba 2»; cuerpo breve: «que sera de tu visa» (texto corto de prueba, no comunicación habitual).
+- **SPF:** PASS.
+- **DKIM RSA:** PASS (`d=gandywilliam.dev`, selector `v1-rsa-20261112`).
+- **DKIM Ed25519:** `neutral (no key)` en Gmail, selector `v1-ed25519-20261112`; no impidió el DKIM PASS con RSA.
+- **DMARC:** PASS (alineación del dominio From).
+- **TLS:** TLS 1.3 en la conexión entre Stalwart y Gmail.
+- **Formato:** `Message-ID` y `Date` propios; MIME `multipart/alternative` con partes texto y HTML; entrega tras 6 segundos.
+- **Resultado de entrega:** Gmail aceptó y clasificó como Spam; no hay códigos SMTP de rechazo.
+
+**Diagnóstico:** no hay evidencia para atribuir estos envíos a fallo DNS, TLS, SPF, RSA DKIM o DMARC. La ausencia de listado en Spamhaus no constituye reputación buena en Gmail. Causas plausibles restantes, sin confirmación individual: poca reputación histórica del IP/dominio nuevo, clasificación por destinatario y patrón/contenido de correos repetitivos muy cortos. Google no revela la causa exacta por mensaje a través de estos encabezados.
+
+**Próximos pasos de bajo riesgo:**
+1. En el Gmail receptor, marcar los mensajes genuinos como «No es spam»; añadir `contacto@gandywilliam.dev` a Contactos. Opcionalmente, crear filtro «Nunca enviarlo a Spam» **solo si se quiere asegurar la entrega en esa cuenta**, sabiendo que no cambia reputación para otros destinatarios.
+2. Evitar envíos repetitivos de asunto «prueba», mensajes sin contexto e imágenes sin texto. En adelante enviar únicamente correspondencia normal a destinatarios que la esperan, con asunto claro y contenido legítimo.
+3. Comprobar eventualmente con **otro destinatario que consienta** si también ocurre, para distinguir efecto de cuenta individual. No enviar volumen artificial para generar datos Postmaster Tools.
+4. Mantener `gandywilliam.dev` verificado en Postmaster Tools y observar tendencias cuando haya suficiente tráfico legítimo.
+5. Si entregabilidad externa fiable es crítica y la reputación no mejora, estudiar SMTP relay con proveedor reputado, estimando precio y compatibilidad, sin asumir que habrá un resultado inmediato.
+6. No modificar MX, PTR, SPF, DKIM RSA ni DMARC que ya funcionan. Tampoco asumir que quitar Ed25519 resolverá Spam.
+
+**Fuentes:** [Google directrices](https://support.google.com/mail/answer/81126?hl=es-419); [Google correos válidos en spam](https://support.google.com/mail/answer/16457426?co=GENIE.Platform%3DDesktop&hl=es-419); [Google Postmaster Tools](https://support.google.com/mail/answer/9981691?hl=en).
