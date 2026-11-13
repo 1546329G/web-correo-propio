@@ -63,3 +63,12 @@ El usuario compartió los encabezados originales **recibidos por Gmail** del cor
 **Diagnóstico siguiente:** verificar si el correo `saludar` se depositó en bandeja de entrada o Spam. Si entró a Spam, el siguiente foco es reputación/historial del dominio y la IP en Gmail, relevancia del mensaje y clasificación por destinatario. Configurar [Google Postmaster Tools](https://postmaster.google.com/) para el dominio `gandywilliam.dev` usando la verificación DNS que Google proporcione, sin alterar MX/SPF/DKIM/DMARC. La herramienta puede no mostrar métricas con tráfico demasiado bajo. Para mensajes legítimos de prueba clasificados en Spam, el destinatario puede usar «No es spam»; esto no garantiza mejora global. No realizar envíos masivos ni pruebas repetitivas.
 
 Fuentes de criterios: [Directrices Google remitentes](https://support.google.com/mail/answer/81126?hl=es) y [Postmaster Tools](https://support.google.com/mail/answer/9981691?hl=es-ES).
+
+
+## Actualización — Google Postmaster Tools, 13/11/2026 13:36 (Lima)
+
+El usuario registró `gandywilliam.dev` en Google Postmaster Tools, verificó la propiedad mediante un registro de verificación DNS añadido en Cloudflare y presentó captura **Status: Verified** (fecha 13/11/2026). El panel de gestión mostraba **Health: Not enough data**.
+
+La verificación fue exitosa. «Not enough data» significa que Google no dispone de suficientes datos para mostrar resultados en ciertos paneles; **no es evidencia de fallo SPF/DKIM/DMARC, ni prueba que la IP tenga buena o mala reputación**. Google reconoce que las métricas pueden no mostrarse con volúmenes diarios bajos para proteger privacidad. No enviar correos masivos para intentar forzar estadísticas.
+
+Siguientes acciones: confirmar en qué carpeta llegó el último correo «saludar», conservar el registro de verificación de Postmaster, consultar paneles periódicamente cuando haya actividad legítima, marcar «No es spam» solo para mensajes legítimos de prueba; no alterar los DNS de autenticación que ya pasan. [Fuente: Google Postmaster Tools](https://support.google.com/mail/answer/9981691?hl=es-419_es).
