@@ -1,0 +1,24 @@
+# LABORATORIO / VPS NUEVO: no ejecutar sobre VPS con Stalwart ya instalado.
+# Escenario del proyecto: 80/443 ocupados por otra aplicación.
+# Documento: ../../docs/10-recrear-desde-cero.md
+# IMPORTANTE: el tag v1 puede cambiar; sustituirlo por una versión/digest fijo verificado
+# si se necesita reproducción idéntica en una fecha concreta.
+services:
+  stalwart:
+    image: stalwartlabs/stalwart:v1
+    container_name: stalwart
+    init: true
+    restart: unless-stopped
+    ports:
+      - "25:25"                  # Recepción SMTP desde otros servidores
+      - "465:465"                # Envío SMTP autenticado, TLS implícito
+      - "993:993"                # IMAP cifrado
+      - "127.0.0.1:8080:8080"   # Instalación y administración, NO público
+      - "127.0.0.1:8443:443"    # HTTPS del contenedor en loopback
+    volumes:
+      - stalwart-etc:/etc/stalwart
+      - stalwart-data:/var/lib/stalwart
+
+volumes:
+  stalwart-etc:
+  stalwart-data:
