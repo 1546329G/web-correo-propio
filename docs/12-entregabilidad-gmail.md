@@ -40,3 +40,26 @@ No hay que identificar «imagen sin texto» como única causa confirmada. Gmail 
 - [Spamhaus — preguntas frecuentes sobre listas](https://www.spamhaus.org/faqs/general-questions/).
 
 **No publicar el MIME completo con imágenes ni direcciones personales del receptor en GitHub; este documento registra solo aspectos técnicos.**
+
+
+## Actualización: segunda prueba enviada desde Gandy Mail — 13/11, 13:19 (America/Lima)
+
+El usuario compartió los encabezados originales **recibidos por Gmail** del correo con asunto `saludar`, remitente `contacto@gandywilliam.dev`.
+
+| Comprobación | Resultado |
+|---|---|
+| SPF | **PASS**, IP emisora 13.140.207.155, `smtp.mailfrom=gandywilliam.dev` (cuenta contacto) |
+| DKIM RSA | **PASS**, `d=gandywilliam.dev`, selector `v1-rsa-20261112` |
+| DKIM Ed25519 | `neutral (no key)`, selector `v1-ed25519-20261112` |
+| DMARC | **PASS**, `header.from=gandywilliam.dev`; dominio alineado |
+| SMTP | ESMTPS, **TLS 1.3**, `TLS_AES_256_GCM_SHA384` |
+| `Message-ID` | Presente, generado por Gandy Mail: dominio `@gandywilliam.dev` |
+| `Date` | Presente; entrega a Gmail ~7 s después |
+| MIME | `multipart/alternative` con **texto plano y HTML** no vacíos |
+| Spam/Inbox para esta segunda prueba | **NO INFORMADO** en los encabezados compartidos |
+
+**Conclusión de la evidencia:** la autenticación del correo webmail funciona. La anotación `neutral (no key)` de Ed25519 no invalida el `PASS` de RSA y DMARC. No modificar SPF, DKIM RSA, DMARC o MX para intentar solucionar la carpeta Spam. La primera prueba en texto solo y la de imagen no permitían aislar totalmente contenido/reputación; esta segunda prueba confirma formato correcto de mensajes y autenticación.
+
+**Diagnóstico siguiente:** verificar si el correo `saludar` se depositó en bandeja de entrada o Spam. Si entró a Spam, el siguiente foco es reputación/historial del dominio y la IP en Gmail, relevancia del mensaje y clasificación por destinatario. Configurar [Google Postmaster Tools](https://postmaster.google.com/) para el dominio `gandywilliam.dev` usando la verificación DNS que Google proporcione, sin alterar MX/SPF/DKIM/DMARC. La herramienta puede no mostrar métricas con tráfico demasiado bajo. Para mensajes legítimos de prueba clasificados en Spam, el destinatario puede usar «No es spam»; esto no garantiza mejora global. No realizar envíos masivos ni pruebas repetitivas.
+
+Fuentes de criterios: [Directrices Google remitentes](https://support.google.com/mail/answer/81126?hl=es) y [Postmaster Tools](https://support.google.com/mail/answer/9981691?hl=es-ES).
